@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Percentage Calculator</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#e3f2fd;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .box{
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            width:320px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        h2{
+            color:#1565c0;
+        }
+
+        input{
+            width:90%;
+            padding:10px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+            background:#1565c0;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#0d47a1;
+        }
+
+        #resetBtn{
+            background:#e53935;
+        }
+
+        #resetBtn:hover{
+            background:#b71c1c;
+        }
+
+        #result{
+            margin-top:20px;
+            font-size:18px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Attendance Calculator</h2>
+
+    <input type="number" id="total" placeholder="Total Classes">
+    <input type="number" id="attended" placeholder="Classes Attended">
+
+    <button onclick="calculateAttendance()">Calculate</button>
+
+    <button id="resetBtn" onclick="resetFields()">Reset</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function calculateAttendance() {
+    let total = parseFloat(document.getElementById("total").value);
+    let attended = parseFloat(document.getElementById("attended").value);
+
+    if (isNaN(total) || isNaN(attended) || total <= 0 || attended < 0 || attended > total) {
+        document.getElementById("result").innerHTML = "Enter valid values!";
+        document.getElementById("result").style.color = "red";
+        return;
+    }
+
+    let percentage = (attended / total) * 100;
+
+    document.getElementById("result").style.color = "green";
+    document.getElementById("result").innerHTML =
+        "Attendance: " + percentage.toFixed(2) + "%";
+}
+
+function resetFields() {
+    document.getElementById("total").value = "";
+    document.getElementById("attended").value = "";
+    document.getElementById("result").innerHTML = "";
+}
+</script>
+
+</body>
+</html>
